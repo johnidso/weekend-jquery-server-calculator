@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery.js" charset="utf-8"></script>
+    <script src="client.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Server Side Calculator</h1>
+    <h3>Calculator</h3>
+    <input placeholder="first operand" id="firstOperandIn">
+    <button id="plusButton">+</button>
+    <button id="minusButton">-</button>
+    <button id="multiplyButton">*</button>
+    <button id="divideButton">/</button>
+    <input placeholder="second operand" id="secondOperandIn">
+    <button id="equalsButton">=</button>
+    <span id="answer">Answer</span> 
+    <!-- can append calc history at the most recent index -->
+    <h3>Full Calculation history</h3>
+    <ul id="calcHistory">
+
+    </ul>
+</body>
+</html>
