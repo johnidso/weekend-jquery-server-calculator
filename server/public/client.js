@@ -1,31 +1,32 @@
 $(document).ready(onReady);
 
 function onReady(){
-
+    $('#addButton').on("click", setOperator),
+    $('#subtractButton').on("click", setOperator),
+    $('#multiplyButton').on("click", setOperator),
+    $('#divideButton').on("click", setOperator)
+    // $('#equalsButton').on("click", sendCalc)
 }
 
-let currentCalc = [];
+let operator;
 
-function applyOperator(){
-
+function setOperator(){
+    operator = $(this).text();
+    console.log(operator);
 }
 
-function createCalcObject(){
-    let firstOperand = $('#firstOperandIn').val();
-    let secondOperand = $('#secondOperandIn').val();
-
+function sendCalc(){
+    $.ajax({
+        method: 'POST',
+        url: '/calculation',
+        data: {
+            firstOperand: $('#firstOperandIn').val(),
+            secondOperand: $('#secondOperandIn').val(),
+            operator: operator,
+            answer: undefined
+        }
+    })
 }
-
-// function sendCalc(){
-//     $.ajax({
-//         method: 'POST',
-//         url: '/calculation',
-//         data: {
-//             operandOne: $('#firstOperandIn').val(),
-//             operandTwo: $('#secondOperandIn').val()
-//         }
-//     })
-// }
 
 // = sends the calc to the server 
 // clear current calc
