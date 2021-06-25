@@ -5,7 +5,7 @@ function onReady(){
     $('#subtractButton').on("click", setOperator),
     $('#multiplyButton').on("click", setOperator),
     $('#divideButton').on("click", setOperator)
-    // $('#equalsButton').on("click", sendCalc)
+    $('#equalsButton').on("click", sendCalc)
 }
 
 let operator;
@@ -16,6 +16,7 @@ function setOperator(){
 }
 
 function sendCalc(){
+    // could add some validation logic here to deny strings, empty submissions, etc
     $.ajax({
         method: 'POST',
         url: '/calculation',
@@ -26,6 +27,12 @@ function sendCalc(){
             answer: undefined
         }
     })
+    .then(function(){
+        console.log('Calculation sent');
+    })
+    .catch(function (error){
+        alert('Error!', error)
+    });
 }
 
 // = sends the calc to the server 
