@@ -1,5 +1,7 @@
 $(document).ready(onReady);
 
+// = sends the calc to the server 
+
 function onReady(){
     $('#addButton').on("click", setOperator),
     $('#subtractButton').on("click", setOperator),
@@ -13,7 +15,7 @@ let operator;
 function setOperator(){
     operator = $(this).text();
     console.log(operator);
-}
+} // uses button text to store the last user-selected operator
 
 function sendCalc(){
     // could add some validation logic here to deny strings, empty submissions, etc
@@ -31,14 +33,38 @@ function sendCalc(){
         console.log('Calculation sent');
     })
     .catch(function (error){
-        alert('Error!', error)
+        alert('Error!', error);
     });
+} // creates post and send object including all required data for calc
+
+function getCalcs(){
+    $.ajax({
+        method: 'GET',
+        url: '/calculation',
+    })
+    .then(function(response){
+
+    })
+    .catch(function(error){
+        alert('Error!', error);
+    })
 }
 
-// = sends the calc to the server 
-// clear current calc
+function renderCalculations(calcHistoryArray){
+    for (let calc of calcHistoryArray){
+        if(indexOf(calc) != (calcHistoryArray.length-1)){
+            $('#calcHistory').append(`
+            <li>
+            ${calc.firstOperand} ${calc.operator} ${calc.secondOperand} = ${calc.answer}
+            </li>
+            `)
+        } else {
+            $('#answer').text(item.answer);
+        }
+    }
+}
 
-// create object with last selected operator, and inputs
+// clear current calc
 
 // clear input fields with c
 

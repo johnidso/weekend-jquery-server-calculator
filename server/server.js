@@ -13,8 +13,30 @@ app.listen(port, () => {
     console.log("listening on port", port);
 });
 
+let calculationHistory = [];
+
 app.post('/calculation', function(req,res){
     console.log('Got POST', req.body);
+    switch (req.body.operator) {
+        case '+':
+        req.body.answer = Number(req.body.firstOperand) + Number(req.body.secondOperand);    
+            break;
+        case '-':
+        req.body.answer = req.body.firstOperand - req.body.secondOperand;    
+            break;
+        case '*':
+        req.body.answer = req.body.firstOperand * req.body.secondOperand;    
+            break;
+        case '/':
+        req.body.answer = req.body.firstOperand / req.body.secondOperand;   
+            break;
+        default:
+            console.log('Error');
+            break;
+    }
+    calculationHistory.push(req.body);
+    console.log(calculationHistory);
+    res.sendStatus(201);
 })
 
 // calculate the numbers
