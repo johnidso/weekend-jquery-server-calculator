@@ -3,11 +3,12 @@ $(document).ready(onReady);
 // = sends the calc to the server 
 
 function onReady(){
-    $('#addButton').on("click", setOperator),
-    $('#subtractButton').on("click", setOperator),
-    $('#multiplyButton').on("click", setOperator),
-    $('#divideButton').on("click", setOperator)
-    $('#equalsButton').on("click", sendCalc)
+    $('#addButton').on("click", setOperator);
+    $('#subtractButton').on("click", setOperator);
+    $('#multiplyButton').on("click", setOperator);
+    $('#divideButton').on("click", setOperator);
+    $('#equalsButton').on("click", sendCalc);
+    $('#clearButton').on("click", clearInputs);
 }
 
 let operator;
@@ -31,6 +32,7 @@ function sendCalc(){
     })
     .then(function(){
         console.log('Calculation sent');
+        getCalcs();
     })
     .catch(function (error){
         alert('Error!', error);
@@ -43,7 +45,8 @@ function getCalcs(){
         url: '/calculation',
     })
     .then(function(response){
-
+        renderCalculations(response);
+        console.log('Rendering Calculations', response);
     })
     .catch(function(error){
         alert('Error!', error);
@@ -62,6 +65,12 @@ function renderCalculations(calcHistoryArray){
             $('#answer').text(item.answer);
         }
     }
+}
+
+function clearInputs(){
+    $('#firstOperandIn').val('');
+    $('#secondOperandIn').val('');
+    console.log('Inputs cleared');
 }
 
 // clear current calc
