@@ -16,28 +16,32 @@ let operator;
 
 function setOperator(){
     operator = $(this).text();
-    console.log(operator);
 } // uses button text to store the last user-selected operator
 
 function sendCalc(){
+    let operandOne = parseInt($('#firstOperandIn').val());
+    let operandTwo = parseInt($('#secondOperandIn').val());
     // could add some validation logic here to deny strings, empty submissions, etc
-    $.ajax({
-        method: 'POST',
-        url: '/calculation',
-        data: {
-            firstOperand: $('#firstOperandIn').val(),
-            secondOperand: $('#secondOperandIn').val(),
-            operator: operator,
-            answer: undefined
-        }
-    })
-    .then(function(){
-        console.log('Calculation sent');
-        getCalcs();
-    })
-    .catch(function (error){
-        alert('Error!', error);
-    });
+    if(operandOne == '' || operandTwo == '' || !$.isNumeric(operandOne) || !$.isNumeric(operandTwo)){
+        alert('Please enter numbers only in both fields.');
+    } else {
+        $.ajax({
+            method: 'POST',
+            url: '/calculation',
+            data: {
+                firstOperand: operandOne,
+                secondOperand: operandTwo,
+                operator: operator,
+                answer: undefined
+            }
+        })
+        .then(function(){
+            getCalcs();
+        })
+        .catch(function (error){
+            alert('Error!', error);
+        });
+    }
 } // creates post and send object including all required data for calc
 
 function getCalcs(){
@@ -47,7 +51,6 @@ function getCalcs(){
     })
     .then(function(response){
         renderCalculations(response);
-        console.log('Rendering Calculations', response);
     })
     .catch(function(error){
         alert('Error!', error);
@@ -72,7 +75,6 @@ function renderCalculations(calcHistoryArray){
 function clearInputs(){
     $('#firstOperandIn').val('');
     $('#secondOperandIn').val('');
-    console.log('Inputs cleared');
 }
 
 // clear current calc
