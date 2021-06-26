@@ -12,19 +12,20 @@
 <body>
     <h1>Server Side Calculator</h1>
     <h3>Calculator</h3>
-    <input placeholder="first operand" id="firstOperandIn">
-    <section id="operators">
-        <button id="addButton">+</button>
-        <button id="subtractButton">-</button>
-        <button id="multiplyButton">*</button>
-        <button id="divideButton">/</button>
-    </section> 
-    <input placeholder="second operand" id="secondOperandIn">
-    <button id="equalsButton">=</button>
-    <span id="answer">Answer</span> 
-    <br>
-    <button id="clearButton">C</button>
-    <h3>Full Calculation history</h3>
+    <section id="calculator">
+        <input placeholder="first operand" id="firstOperandIn">
+            <button id="addButton">+</button>
+            <button id="subtractButton">-</button>
+            <button id="multiplyButton">*</button>
+            <button id="divideButton">/</button>
+        <input placeholder="second operand" id="secondOperandIn">
+        <button id="equalsButton">=</button>
+        <b>Answer:</b><span id="answer"></span> 
+        <br>
+        <button id="clearButton">C</button>
+    </section>
+    <h3>My Previous Calculations</h3>
+    <!-- This section will show previous calcs, NOT the current calc -->
     <ul id="calcHistory">
 
     </ul>
