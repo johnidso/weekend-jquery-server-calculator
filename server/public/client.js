@@ -10,6 +10,7 @@ function onReady(){
     $('#divideButton').on("click", setOperator);
     $('#equalsButton').on("click", sendCalc);
     $('#clearButton').on("click", clearInputs);
+    $('#clearHistoryButton').on("click", deleteHistory)
 }
 
 let operator;
@@ -77,9 +78,15 @@ function clearInputs(){
     $('#secondOperandIn').val('');
 }
 
-// clear current calc
-
-// clear input fields with c
-
-// get list of operations from server and print them to DOM 
-
+function deleteHistory(){
+    $.ajax({
+        method: 'DELETE',
+        url: '/delete',
+    })
+    .then(function(response){
+        renderCalculations(response);
+    })
+    .catch(function(error){
+        alert('Error!', error);
+    })
+}
