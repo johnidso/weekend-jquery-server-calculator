@@ -41,7 +41,6 @@ app.post('/calculation', function(req,res){
 
 app.get('/calculation', function(req,res){
     res.send(calculationHistory);
-    res.sendStatus(200);
 })
 // calculate the numbers
 

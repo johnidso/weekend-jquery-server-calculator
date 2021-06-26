@@ -3,6 +3,7 @@ $(document).ready(onReady);
 // = sends the calc to the server 
 
 function onReady(){
+    getCalcs();
     $('#addButton').on("click", setOperator);
     $('#subtractButton').on("click", setOperator);
     $('#multiplyButton').on("click", setOperator);
@@ -54,15 +55,16 @@ function getCalcs(){
 }
 
 function renderCalculations(calcHistoryArray){
+    $('#calcHistory').empty();
     for (let calc of calcHistoryArray){
-        if(indexOf(calc) != (calcHistoryArray.length-1)){
+        if(calcHistoryArray.indexOf(calc) != (calcHistoryArray.length-1)){
             $('#calcHistory').append(`
             <li>
             ${calc.firstOperand} ${calc.operator} ${calc.secondOperand} = ${calc.answer}
             </li>
             `)
         } else {
-            $('#answer').text(item.answer);
+            $('#answer').text(calc.answer);
         }
     }
 }
