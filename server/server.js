@@ -39,6 +39,10 @@ app.post('/calculation', function(req,res){
     res.sendStatus(201);
 })
 
+app.get('/calculation', function(req,res){
+    res.send(calculationHistory);
+    res.sendStatus(200);
+})
 // calculate the numbers
 
 // send back and ok when the calc is complete
