@@ -76,6 +76,7 @@ function renderCalculations(calcHistoryArray){
 function clearInputs(){
     $('#firstOperandIn').val('');
     $('#secondOperandIn').val('');
+    $('#answer').empty();
 }
 
 function deleteHistory(){
